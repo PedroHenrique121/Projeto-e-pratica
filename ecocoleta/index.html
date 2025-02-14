@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO-COLETA</title>
+    <style>
+        body{
+           font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg, rgb(0, 238, 255), rgb(255, 251, 0));
+        }
+          div{
+             background-color: rgba(0, 0, 0, 0.8);
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             padding: 80px;
+             border-radius: 15px ;
+            color: white;
+            text-align: center;
+          }  
+          input{
+            padding: 15px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            width: 80%;
+            margin: 10px auto;
+
+
+
+          }
+          button{
+            background-color: dodgerblue;
+            border: none;
+            padding: 15px;
+            width: 80%;
+            border-radius: 15px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+          }
+          button:hover{
+            background-color: rgb(19, 89, 160);
+          }
+          img{
+            display: block;
+            margin: 0 auto;
+            width: 55px;
+          }
+          a{
+            font-size: .85em;
+    color: #fff;
+    text-decoration: none;
+
+          }
+          a:hover{
+            text-decoration: underline;
+
+          }
+          .input-box {
+          
+            
+          text-align: center;
+   
+}
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #2c4766;
+    outline: none;
+    border-radius: 40px;
+    font-size: 1em;
+    color: #fff;
+    padding: 0 20px;
+    transition: .5s ease;
+}
+.input-box input:focus,
+.input-box input:valid {
+    border-color: #0ef;
+}
+.input-box label {
+  
+   position: initial;
+    top: 10px;
+    left: 20px;
+
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s ease;
+}
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: 1px;
+    font-size: .8em;
+    background: #1f293a;
+    padding: 0 6px;
+    color: #0ef;
+}
+    </style>
+</head>
+<body>
+    <div class ="input-box">
+        <h1> Login </h1>
+      <img src ="imagens/icon user.png" alt="vetor";
+        <br><br><br>
+        <input type="email" required placeholder="Email" id="login" onfocus="emailFocus()">
+
+        <br><br>
+       
+        <input type="password" required placeholder="Password" id="senha" onfocus="senhaFocus()">
+       
+        <a href="#" onclick="window.location.href='esqueci.html'">Forgot your password</a>
+        <br><br>
+    <button onclick="logar()">Enviar</button>     
+    <button onclick="adLogin()">Criar</button>   
+    </div>
+<script>
+
+let db = [
+    {
+        login: "email@",
+        senha: 123
+    }
+]
+
+console.log(db[0]);
+    function logar() {
+        var login = document.getElementById('login').value;
+        var senha = document.getElementById('senha').value;
+
+      
+        if (!login.includes('@')) {
+            alert('Por favor, insira um email válido com "@"');
+            return;}
+
+        for(let i = 0;true;i++){
+          if(db[i].login == login && db[i].senha == senha){
+            alert("conta encontrada")
+            location.href = 'home.html';
+          }else if(i == db.length){
+            alert("conta não encontrada")
+          }
+        }
+      
+        console.log(db);
+
+    
+    }
+    function emailFocus() {
+        document.getElementById('senha').disabled = false;
+    }
+
+    function adLogin(){
+      var login = document.getElementById('login').value;
+      var senha = document.getElementById('senha').value;
+
+      db.push({
+        login: login,
+        senha: senha
+      })
+    }
+
+    
+    function senhaFocus() {
+        document.getElementById('senha').disabled = false;
+    }
+
+
+   
+   
+</script>
+
+
+</body>
+</html>

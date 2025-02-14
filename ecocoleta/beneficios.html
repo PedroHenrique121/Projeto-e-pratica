@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troca de Pontos</title>
+    <style>
+        body { font-family: Arial, sans-serif;
+             text-align: center;
+              padding: 20px;
+             }
+
+        img {
+        width: 120px; 
+         }
+
+        #store, #food-store, #benefits-container {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 90px;
+        }
+        .item { cursor: pointer;
+             display: flex;
+              flex-direction: column;
+               align-items: center;
+             }
+
+        .item img { 
+        width: 80px; 
+        height: 80px; 
+        object-fit: cover; 
+        }
+        .top-section {
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(174, 206, 174, 0.196);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        p {
+            margin-top: -5px;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+     
+        .nav-container { display: flex; justify-content: center; margin-top: 15px; position: relative; }
+        .nav-menu { display: flex; gap: 40px; border-bottom: 2px solid #ccc; padding-bottom: 5px; position: relative; }
+        .nav-item { padding: 10px 20px; cursor: pointer; font-size: 18px; position: relative; }
+        .nav-item.active { font-weight: bold; color: green; }
+
+   
+        .nav-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background-color: green;
+            transition: all 0.3s ease-in-out;
+            border-radius: 3px;
+        }
+
+        .medal-container { 
+            align-items: center;
+    
+             margin-top: 20px;}
+        
+        .medal-container img { width: 100px; margin-bottom: 40px;  }
+        .sair{
+            padding: 10px;
+            border-radius: 3px;
+         border: none;
+            background-color: chartreuse;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sair:hover{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="top-section">
+        <img src="imagens/reciclapoints.png" alt="Recicla Points">
+        <p id="points">Pontos: 100</p>
+    </div>
+    <br>
+    <button class="sair" onclick="Sair()">Sair</button>
+    <br>
+    <div class="nav-container">
+        <div class="nav-menu">
+            <div class="nav-item" data-tab="ganhos">Ganhos</div>
+            <div class="nav-item" data-tab="uso">Uso</div>
+            <div class="nav-item active" data-tab="beneficios">Benefícios</div>
+            <div class="nav-indicator"></div> 
+        </div>
+    </div>
+
+    <div id="store" style="display: none;"></div>
+    <div id="food-store" style="display: none;"></div>
+  <h2><div id="benefits-container"></div></h2>
+
+    <script>
+        let userPoints = '90';
+
+        const pointsDisplay = document.getElementById("points");
+        const store = document.getElementById("store");
+        const foodStore = document.getElementById("food-store");
+        const benefitsContainer = document.getElementById("benefits-container");
+        const navItems = document.querySelectorAll(".nav-item");
+        const navIndicator = document.querySelector(".nav-indicator");
+
+        function updatePointsDisplay() {
+            pointsDisplay.textContent = `Pontos: ${userPoints}`;
+        }
+
+        function renderBenefits() {
+            benefitsContainer.innerHTML = "";
+            let medalImg = "";
+            let benefitsText = "";
+
+            if (userPoints >= 80) {
+                medalImg = "imagens/ouro.png";
+                benefitsText = "Benefícios: 50% de desconto em produtos selecionados!" +"<br><br>" +"5 ponto por login diario";
+            } else if (userPoints >= 50) {
+                medalImg = "imagens/prata.png";
+                benefitsText = "Benefícios: 30% de desconto em produtos!" +"<br><br>" +"3 ponto por login diario";
+            } else {
+                medalImg = "imagens/bronze.png";
+                benefitsText = "Benefícios: 10% de desconto em produtos!" +"<br><br>" +"1 ponto por login diario";
+
+            }
+
+            const medalDiv = document.createElement("div");
+            medalDiv.classList.add("medal-container");
+            medalDiv.innerHTML = `<img src="${medalImg}" alt="Medalha"><p>${benefitsText}</p>`;
+            benefitsContainer.appendChild(medalDiv);
+        }
+
+
+        function renderItems(category) {
+            store.style.display = category === "uso" ? "flex" : "none";
+            foodStore.style.display = category === "uso" ? "flex" : "none";
+            benefitsContainer.style.display = category === "beneficios" ? "block" : "none";
+
+            if (category === "beneficios") {
+                renderBenefits();
+            }
+        }
+
+        function updateIndicator(target) {
+            const { offsetLeft, offsetWidth } = target;
+            navIndicator.style.width = `${offsetWidth}px`;
+            navIndicator.style.left = `${offsetLeft}px`;
+        }
+
+        updatePointsDisplay();
+        renderItems("beneficios");
+
+  
+        const activeTab = document.querySelector(".nav-item.active");
+        if (activeTab) {
+            updateIndicator(activeTab);
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener("click", function () {
+                document.querySelector(".nav-item.active").classList.remove("active");
+                this.classList.add("active");
+                updateIndicator(this);
+
+                if (this.dataset.tab === "uso") {
+                  
+                    setTimeout(() => {
+                        window.location.href = "recicla_points.html";
+                    }, 500);
+                } else 
+                 { 
+                    if (this.dataset.tab === "ganhos"){
+                        setTimeout(() => {
+                        window.location.href = "recicla_points.html";
+                    }, 500);
+                    }else{
+                    renderItems(this.dataset.tab);
+                }
+            }
+            });
+        });
+
+
+        window.addEventListener("resize", () => {
+            const activeTab = document.querySelector(".nav-item.active");
+            if (activeTab) {
+                updateIndicator(activeTab);
+            }
+        });
+        function Sair (){
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>EcoColeta</title>
+ <style>
+     body {
+         font-family: monospace;
+         margin: 0;
+         padding: 0;
+         background-color: rgb(60, 66, 60);
+         color: #f1f1f1;
+         display: flex;
+         flex-direction: column;
+         min-height: 100vh;
+     }
+   
+     .top-section {
+         background-image: linear-gradient(45deg, rgb(0, 238, 255), rgb(255, 251, 0));
+         display: flex;
+         justify-content:center;
+         align-items: center;  
+         position: relative; 
+     }
+
+
+     #container {
+         display: flex;
+         align-items: center;
+     }
+
+
+     h1 {
+         margin-left: 10px;
+         font-size: 45px;
+         color: #131313;
+     }
+
+
+     img {
+         width: 80px;
+         height: 80px;
+     }
+
+
+     .button-sair {
+         padding: 20px 26px;
+         background-color: #33b148;
+         color: white;
+         font-weight: bold;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: background-color 0.3s ease, transform 0.2s ease;
+     }
+
+
+     .button-sair:hover {
+         color: #f1f1f1;
+         transform: scale(1.1);
+         background-color: #ec2828;
+     }
+
+
+     .icon-usuario {
+         width: 50px;
+         height: 50px;
+         border-radius: 50%;
+         cursor: pointer;
+         transition: transform 0.3s ease;
+     }
+
+
+     .icon-usuario:hover {
+         transform: scale(1.1);
+     }
+
+
+     .user-actions {
+         display: flex;
+         align-items: center;
+         position: absolute;
+         right: 20px;  
+         top: 20px;   
+     }
+
+
+     /* Table of buttons */
+     table {
+        
+         width: 100%;
+         margin: 10px 0;
+         text-align: center;
+     }
+
+
+     table th {
+        margin-top: -10px;
+         padding: 10px;
+     }
+
+
+     button {
+         background-color: rgba(31, 31, 31, 0);
+         border: none;
+         color:#b0f782;
+         padding: 14px 30px;
+         font-size: 16px;
+         font-weight: bold;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: background-color 0.3s ease, transform 0.2s ease;
+     }
+
+
+     button:hover {
+         background-color: rgba(31, 31, 31, 0);
+         transform: scale(1.5);
+         color: rgb(140, 255, 226);
+     }
+
+
+   
+       hr {
+         margin-top:-10px;
+         border: 0;
+         height: 2px;
+         background-color: #f1f1f1;
+       
+     }
+    
+
+
+     .bottom-section {
+         display: flex;             
+         align-items: flex-start;
+         margin-top: 90px;
+         margin-left: 90px;
+         flex-grow: 1;
+         gap: 170px;
+     }
+
+
+     .bottom-section img {
+         width: 150px;
+         height: 150px;
+         cursor: pointer;
+         transition: transform 0.2s ease;
+     }
+
+
+     .bottom-section img:hover {
+         transform: scale(1.05);
+     }
+
+
+     .bottom-section h2 {
+         cursor: pointer;
+         font-size: 25px;
+         margin-left: 30px;
+         transition: background-color 0.3s ease, transform 0.2s ease;
+     }
+
+
+     .bottom-section h2:hover {
+         color: #e2a13f;
+         transform: scale(1.05);
+     }
+
+
+     .bottom-section button {
+         color: #f1f1f1;
+         font-size: 18px;
+         margin-top: -10px;
+     }
+
+
+     .bottom-section button:hover {
+         text-decoration: underline;
+         transform: scale(1);
+     }
+
+
+     .footer {
+         background-color: #2d2d2d;
+         color: #f1f1f1;
+         text-align: center;
+         padding: 20px;
+         margin-top: auto;
+         font-size: 14px;
+     }
+
+
+     .footer a {
+         color: #b0f782;
+         text-decoration: none;
+         margin: 0 10px;
+     }
+
+
+     .footer a:hover {
+         text-decoration: underline;
+     }
+
+     .midle-section img {
+     
+        cursor: pointer;
+    width: 240px;
+    height: auto;
+    transition: transform 0.2s ease;
+    margin: 0 10px;
+}
+
+.midle-section img:hover {
+    transform: scale(1.1);
+}
+.midle-section {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 27vh;   
+    gap: 250px;          
+}
+
+.imagem-erro{
+    margin-left: 90px;
+    margin-right: -120px;
+}
+ </style>
+</head>
+<body>
+ 
+ <div class="top-section">
+     <div id="container">
+         <img src="imagens/icone aguinha.png" alt="Home">
+         <h1>EcoColeta</h1>
+     </div>
+
+
+     
+     <div class="user-actions">
+         <button class="button-sair" onclick="logout()">Sair</button>
+        ..
+         <img class="icon-usuario" src="imagens/icone-utilisateur-ver.png" alt="User" onclick="mostrarPerfil()">
+     </div>
+ </div>
+<div class="midle-section">
+    <img src="imagens/genericojornal.png" alt="jornal" onclick="window.location.href='https://g1.globo.com/meio-ambiente/'">
+
+    <img src="imagens/jornal2.jpg" alt="jornal" onclick="window.location.href='https://www.carlosmagno.com.br/noticias/641,lixo_invade_ruas_e_terrenos_de_campina_grande_e_populacao_pede_providencias_a_prefeitura.html'">
+
+    <img src="imagens/jornal 3.jpg" alt="jornal" onclick="window.location.href='https://terradedireitos.org.br/noticias/noticias/sociedade-civil-divulga-manifesto-em-defesa-do-meio-ambiente/22947'">
+
+
+</div>
+
+ 
+ <table>
+     <tr>
+         <th><button onclick="window.location.href='recicla_points.html'">Recicla Points</button></th>
+         <th><button class="telaInicio" onclick="window.location.href='home.html'">Inicio</button></th>
+         <th><button onclick="window.location.href='desafio_diario.html'">Desafio Diario</button></th>
+     </tr>
+ </table>
+
+
+ <hr>
+
+
+ <hr>
+ <!-- Bottom image section -->
+ <div class="bottom-section">
+     <img src="imagens/ODS-12-2.png" alt="Imagem de Terra na mão" onclick="noticiasDia()" class="imagem-erro">
+     <div>
+         <h2 onclick="window.location.href='noticias.html'">NOTÍCIAS DO DIA</h2>
+         <button onclick="noticiasDia()">Leia as notícias diárias e ganhe recompensas</button>
+     </div>
+
+
+     <div style="display: flex; align-items: center; margin-left: 50px; margin-top: -15px;">
+         <img src="imagens/reciclapoints.png" alt="Recicla Points" onclick="recicla()">
+         <div style="margin-left: 15px;">
+             <h2 onclick="window.location.href='recicla_points.html'">RECICLA POINTS</h2>
+             <button>Participe de atividades, recicle, aprenda e seja beneficiado</button>
+         </div>
+     </div>
+ </div>
+
+
+ <!-- Rodapé -->
+ <div class="footer">
+     <p>&copy; 2025 EcoColeta - Todos os direitos reservados</p>
+     <p>📧 E-mail: atgs@discente.ifpe.edu.br | ☎️ Telefone: (81) 98360-6222</p>
+     <p>📍 Endereço: Rua Irene Maria Conceição Silva, 9 - Cidade Moreno</p>
+     <p>
+         <a href="politica_privacidade.html">Política de Privacidade</a> |
+         <a href="termos_uso.html">Termos de Uso</a>
+     </p>
+ </div>
+
+
+ <script>
+     function logout(){
+         window.location.href = 'index.html';
+     }
+
+
+     function mostrarPerfil(){
+         location.href = 'perfil.html';
+     }
+
+
+     function noticiasDia(){
+         location.href = 'noticias.html';
+     }
+
+
+     function recicla(){
+         location.href = 'recicla_points.html';
+     }
+ </script>
+</body>
+</html>
+
+
